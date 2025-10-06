@@ -12,7 +12,13 @@
 import 'package:dio/dio.dart' as _i361;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
-import 'package:portable_radio/di/modules/dio_injectable_module.dart' as _i848;
+import 'package:portable_radio/data/mapper/data_radio_station_mapper.dart'
+    as _i803;
+import 'package:portable_radio/data/repository/radio_station_repository.dart'
+    as _i302;
+import 'package:portable_radio/di/module/dio_injectable_module.dart' as _i894;
+import 'package:portable_radio/domain/use_case/get_available_radio_stations_use_case.dart'
+    as _i687;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -27,8 +33,16 @@ extension GetItInjectableX on _i174.GetIt {
     );
     final dioInjectableModule = _$DioInjectableModule();
     gh.lazySingleton<_i361.Dio>(() => dioInjectableModule.dio);
+    gh.lazySingleton<_i302.RadioStationRepository>(
+        () => _i302.RadioStationRepository(
+              gh<_i361.Dio>(),
+              gh<_i803.DataRadioStationMapper>(),
+            ));
+    gh.lazySingleton<_i687.GetAvailableRadioStationsUseCase>(() =>
+        _i687.GetAvailableRadioStationsUseCase(
+            gh<_i302.RadioStationRepository>()));
     return this;
   }
 }
 
-class _$DioInjectableModule extends _i848.DioInjectableModule {}
+class _$DioInjectableModule extends _i894.DioInjectableModule {}
