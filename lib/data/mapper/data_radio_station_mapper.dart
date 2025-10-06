@@ -8,7 +8,11 @@ class DataRadioStationMapper {
     final uri = Uri.tryParse(dataRadioStation.url);
     final iconUri = Uri.tryParse(dataRadioStation.iconUrl);
 
-    if (uri == null || iconUri == null) {
+    if (uri == null || !_isValidUrl(uri)) {
+      return null;
+    }
+
+    if (iconUri == null || !_isValidUrl(iconUri)) {
       return null;
     }
 
@@ -17,5 +21,9 @@ class DataRadioStationMapper {
       uri: uri,
       iconUri: iconUri,
     );
+  }
+
+  bool _isValidUrl(Uri uri) {
+    return uri.isScheme('http') || uri.isScheme('https');
   }
 }

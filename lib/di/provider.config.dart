@@ -38,15 +38,15 @@ extension GetItInjectableX on _i174.GetIt {
     final dioInjectableModule = _$DioInjectableModule();
     final hiveInjectableModule = _$HiveInjectableModule();
     gh.lazySingleton<_i361.Dio>(() => dioInjectableModule.dio);
+    await gh.lazySingletonAsync<_i986.HiveInterface>(
+      () => hiveInjectableModule.hive(),
+      preResolve: true,
+    );
     gh.lazySingleton<_i329.LocalRadioStationRepository>(
       () => _i329.LocalRadioStationRepository(),
     );
     gh.lazySingleton<_i803.DataRadioStationMapper>(
       () => _i803.DataRadioStationMapper(),
-    );
-    await gh.lazySingletonAsync<_i986.HiveInterface>(
-      () => hiveInjectableModule.hive(),
-      preResolve: true,
     );
     gh.lazySingleton<_i367.SaveFavoriteRadioStationsUseCase>(
       () => _i367.SaveFavoriteRadioStationsUseCase(

@@ -1,0 +1,12 @@
+build_runner:
+  - fvm dart run build_runner build --delete-conflicting-outputs
+
+get:
+  - fvm flutter pub get
+
+test:
+  - fvm flutter pub global activate very_good_cli
+  - fvm flutter pub global run very_good_cli:very_good test --coverage
+  - fvm flutter pub global activate remove_from_coverage
+  - fvm flutter pub global run remove_from_coverage -f coverage/lcov.info -r '.g.dart$','.freezed.dart$','_adapter.dart$'
+  - genhtml coverage/lcov.info -o coverage/
