@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:just_audio/just_audio.dart';
+import 'package:portable_radio/di/provider.dart';
 
 void main() {
+  configureDependencies();
   runApp(const MyApp());
 }
 
@@ -56,8 +59,26 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  late AudioPlayer player;
 
-  void _incrementCounter() {
+  @override
+  initState() {
+    super.initState();
+    // init audio player
+
+    player = AudioPlayer(); // Create a player
+  }
+
+  Future<void> _incrementCounter() async {
+    final duration = await player.setUrl(
+        "https://playerservices.streamtheworld.com/api/livestream-redirect/CADENASER.mp3"); // Schemes: (https: | file: | asset: )
+    await player.play(); // Play while waiting for completion
+    // await player.pause(); // Pause but remain ready to play
+    // await player.seek(Duration(seconds: 10)); // Jump to the 10 second position
+    // await player.setSpeed(2.0); // Twice as fast
+    // await player.setVolume(0.5); // Half as loud
+    // await player.stop();
+
     setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
