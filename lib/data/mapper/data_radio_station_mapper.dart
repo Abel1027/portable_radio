@@ -1,6 +1,8 @@
+import 'package:injectable/injectable.dart';
 import 'package:portable_radio/data/model/data_radio_station.dart';
 import 'package:portable_radio/domain/model/radio_station.dart';
 
+@lazySingleton
 class DataRadioStationMapper {
   RadioStation? map(DataRadioStation dataRadioStation) {
     final uri = Uri.tryParse(dataRadioStation.url);
