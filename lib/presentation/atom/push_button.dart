@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:miv_buttons/miv_buttons.dart';
 import 'package:portable_radio/config/custom_size.dart';
-import 'package:portable_radio/config/radio_color.dart';
+import 'package:portable_radio/config/custom_color.dart';
 
 class PushButton extends StatelessWidget {
   const PushButton({

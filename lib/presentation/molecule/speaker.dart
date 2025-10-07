@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:portable_radio/config/custom_size.dart';
-import 'package:portable_radio/config/radio_color.dart';
+import 'package:portable_radio/config/custom_color.dart';
 
 class Speaker extends StatelessWidget {
-  const Speaker({super.key});
+  const Speaker({super.key, required this.size});
+
+  final double size;
 
   @override
   Widget build(BuildContext context) {
     const holes = 14;
     const holeSize = CustomSize.m;
-    final size = MediaQuery.of(context).size.height * 0.5;
 
     return Container(
       width: size,

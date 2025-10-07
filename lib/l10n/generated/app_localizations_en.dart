@@ -12,8 +12,8 @@ class SEn extends S {
   String get favorites => 'Favorites';
 
   @override
-  String get tuner => 'Tuner';
+  String get tuner => 'Tun.';
 
   @override
-  String get volume => '- Vol. +';
+  String get volume => 'Vol.';
 }

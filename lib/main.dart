@@ -8,7 +8,7 @@ import 'package:portable_radio/presentation/organism/radio_player.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  configureDependencies();
+  await configureDependencies();
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.landscapeLeft,

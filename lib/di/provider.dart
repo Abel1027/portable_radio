@@ -5,4 +5,4 @@ import 'package:portable_radio/di/provider.config.dart';
 GetIt getIt = GetIt.instance;
 
 @injectableInit
-void configureDependencies() => getIt.init();
+Future<void> configureDependencies() async => await getIt.init();

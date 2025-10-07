@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_oknob/flutter_oldschool_knob.dart';
 import 'package:portable_radio/config/custom_size.dart';
-import 'package:portable_radio/config/radio_color.dart';
+import 'package:portable_radio/config/custom_color.dart';
 
 class KnobButton extends StatelessWidget {
   const KnobButton({
     super.key,
     required this.value,
+    required this.minValue,
+    required this.maxValue,
     required this.label,
     required this.onChanged,
   });
 
   final double value;
+  final double minValue;
+  final double maxValue;
   final String label;
   final ValueChanged<double> onChanged;
 
@@ -32,6 +36,9 @@ class KnobButton extends StatelessWidget {
           ),
           sensitivity: 1,
           showKnobLabels: false,
+          minValue: minValue,
+          maxValue: maxValue,
+          maxRotationAngle: maxValue,
         ),
         Text(label),
       ],

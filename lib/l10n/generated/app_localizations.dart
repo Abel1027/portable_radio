@@ -106,13 +106,13 @@ abstract class S {
   /// No description provided for @tuner.
   ///
   /// In en, this message translates to:
-  /// **'Tuner'**
+  /// **'Tun.'**
   String get tuner;
 
   /// No description provided for @volume.
   ///
   /// In en, this message translates to:
-  /// **'- Vol. +'**
+  /// **'Vol.'**
   String get volume;
 }
 

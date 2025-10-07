@@ -13,12 +13,14 @@ import 'package:dio/dio.dart' as _i361;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:hive_flutter/hive_flutter.dart' as _i986;
 import 'package:injectable/injectable.dart' as _i526;
+import 'package:just_audio/just_audio.dart' as _i501;
 import 'package:portable_radio/data/mapper/data_radio_station_mapper.dart'
     as _i803;
 import 'package:portable_radio/data/repository/local_radio_station_repository.dart'
     as _i329;
 import 'package:portable_radio/data/repository/remote_radio_station_repository.dart'
     as _i534;
+import 'package:portable_radio/di/module/audio_player_module.dart' as _i670;
 import 'package:portable_radio/di/module/dio_injectable_module.dart' as _i894;
 import 'package:portable_radio/di/module/hive_injectable_module.dart' as _i521;
 import 'package:portable_radio/domain/use_case/get_available_radio_stations_use_case.dart'
@@ -27,6 +29,8 @@ import 'package:portable_radio/domain/use_case/get_favorite_radio_stations_use_c
     as _i537;
 import 'package:portable_radio/domain/use_case/save_favorite_radio_stations_use_case.dart'
     as _i367;
+import 'package:portable_radio/presentation/view_model/radio_player_cubit.dart'
+    as _i499;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -35,8 +39,12 @@ extension GetItInjectableX on _i174.GetIt {
     _i526.EnvironmentFilter? environmentFilter,
   }) async {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
+    final audioPlayerInjectableModule = _$AudioPlayerInjectableModule();
     final dioInjectableModule = _$DioInjectableModule();
     final hiveInjectableModule = _$HiveInjectableModule();
+    gh.lazySingleton<_i501.AudioPlayer>(
+      () => audioPlayerInjectableModule.audioPlayer,
+    );
     gh.lazySingleton<_i361.Dio>(() => dioInjectableModule.dio);
     await gh.lazySingletonAsync<_i986.HiveInterface>(
       () => hiveInjectableModule.hive(),
@@ -69,9 +77,19 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i534.RemoteRadioStationRepository>(),
       ),
     );
+    gh.singleton<_i499.RadioPlayerCubit>(
+      () => _i499.RadioPlayerCubit(
+        gh<_i501.AudioPlayer>(),
+        gh<_i537.GetFavoriteRadioStationsUseCase>(),
+        gh<_i687.GetAvailableRadioStationsUseCase>(),
+        gh<_i367.SaveFavoriteRadioStationsUseCase>(),
+      ),
+    );
     return this;
   }
 }
+
+class _$AudioPlayerInjectableModule extends _i670.AudioPlayerInjectableModule {}
 
 class _$DioInjectableModule extends _i894.DioInjectableModule {}
 
