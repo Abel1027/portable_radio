@@ -23,8 +23,8 @@ class Screen extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(CustomSize.l),
       decoration: BoxDecoration(
-        color: RadioColor.black,
-        border: Border.all(color: RadioColor.secondary, width: CustomSize.s),
+        color: CustomColor.black,
+        border: Border.all(color: CustomColor.secondary, width: CustomSize.s),
         borderRadius: BorderRadius.all(Radius.circular(CustomSize.xl)),
       ),
       child: Row(
@@ -49,7 +49,7 @@ class Screen extends StatelessWidget {
             width: CustomSize.s,
             margin: EdgeInsets.symmetric(horizontal: CustomSize.l),
             decoration: BoxDecoration(
-              color: RadioColor.primary,
+              color: CustomColor.primary,
               borderRadius: BorderRadius.circular(CustomSize.xs),
             ),
           ),
@@ -74,7 +74,7 @@ class Screen extends StatelessWidget {
                       );
                     },
                     separatorBuilder: (_, _) =>
-                        const Divider(color: RadioColor.primary),
+                        const Divider(color: CustomColor.primary),
                     itemCount: favoriteStations.length,
                   ),
                 ),

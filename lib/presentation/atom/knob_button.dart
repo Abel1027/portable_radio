@@ -24,9 +24,9 @@ class KnobButton extends StatelessWidget {
           knobvalue: value,
           onChanged: onChanged,
           size: CustomSize.xl * 3,
-          markerColor: RadioColor.white,
+          markerColor: CustomColor.white,
           innerKnobGradient: LinearGradient(
-            colors: [RadioColor.primary, RadioColor.black],
+            colors: [CustomColor.primary, CustomColor.black],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),

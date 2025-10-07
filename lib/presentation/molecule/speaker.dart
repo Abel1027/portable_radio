@@ -16,7 +16,7 @@ class Speaker extends StatelessWidget {
       height: size,
       padding: const EdgeInsets.all(CustomSize.l),
       decoration: BoxDecoration(
-        border: Border.all(color: RadioColor.black, width: CustomSize.s),
+        border: Border.all(color: CustomColor.black, width: CustomSize.s),
         borderRadius: BorderRadius.all(Radius.circular(CustomSize.xl)),
       ),
       child: GridView.builder(
@@ -29,7 +29,7 @@ class Speaker extends StatelessWidget {
         itemCount: holes * holes,
         itemBuilder: (_, _) => Container(
           decoration: BoxDecoration(
-            color: RadioColor.black,
+            color: CustomColor.black,
             shape: BoxShape.circle,
           ),
           width: holeSize,

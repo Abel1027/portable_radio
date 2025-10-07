@@ -33,7 +33,7 @@ class StationDetail extends StatelessWidget {
           onPressed: onFavPressed,
           icon: Icon(
             isFav ? Icons.favorite : Icons.favorite_border,
-            color: RadioColor.white,
+            color: CustomColor.white,
           ),
         ),
       ],

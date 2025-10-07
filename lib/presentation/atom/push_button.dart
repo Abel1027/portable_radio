@@ -25,7 +25,7 @@ class PushButton extends StatelessWidget {
       onClick: onPressed,
       icon: icon,
       iconSize: iconSize,
-      color: RadioColor.secondary,
+      color: CustomColor.secondary,
       elevation: isPressed ? CustomSize.s : CustomSize.m,
       shape: shape,
       diameter: CustomSize.xl * 2,

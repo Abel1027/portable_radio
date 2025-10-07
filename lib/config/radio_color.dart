@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class RadioColor {
+class CustomColor {
   static const Color primary = Color.fromARGB(255, 93, 93, 93);
 
   static const Color secondary = Color.fromARGB(255, 53, 53, 53);
