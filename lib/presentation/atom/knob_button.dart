@@ -1,0 +1,40 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_oknob/flutter_oldschool_knob.dart';
+import 'package:portable_radio/config/custom_size.dart';
+import 'package:portable_radio/config/radio_color.dart';
+
+class KnobButton extends StatelessWidget {
+  const KnobButton({
+    super.key,
+    required this.value,
+    required this.label,
+    required this.onChanged,
+  });
+
+  final double value;
+  final String label;
+  final ValueChanged<double> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        FlutterOKnob(
+          knobvalue: value,
+          onChanged: onChanged,
+          size: CustomSize.xl * 3,
+          markerColor: RadioColor.white,
+          innerKnobGradient: LinearGradient(
+            colors: [RadioColor.primary, RadioColor.black],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+          sensitivity: 1,
+          showKnobLabels: false,
+        ),
+        Text(label),
+      ],
+    );
+  }
+}
