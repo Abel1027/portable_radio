@@ -12,17 +12,17 @@ import '../../mock/mocked_dio.dart';
 void main() {
   group(RemoteRadioStationRepository, () {
     late MockedDio mockedDio;
-    late MockedRadioStationMapper mockedRadioStationMapper;
+    late MockedDataRadioStationMapper mockedDataRadioStationMapper;
     late RemoteRadioStationRepository repository;
 
     setUp(() {
       registerFallbackValue(FakedDataRadioStation());
 
       mockedDio = MockedDio();
-      mockedRadioStationMapper = MockedRadioStationMapper();
+      mockedDataRadioStationMapper = MockedDataRadioStationMapper();
       repository = RemoteRadioStationRepository(
         mockedDio,
-        mockedRadioStationMapper,
+        mockedDataRadioStationMapper,
       );
     });
 
@@ -57,7 +57,7 @@ void main() {
             statusCode: 200,
           ),
         );
-        mockedRadioStationMapper.mock(
+        mockedDataRadioStationMapper.mock(
           RadioStation(name: 'name', uri: Uri(), iconUri: Uri()),
         );
 

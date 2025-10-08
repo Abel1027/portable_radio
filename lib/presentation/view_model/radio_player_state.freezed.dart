@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$RadioPlayerState {
 
- List<FavRadioStation> get stations; Option<FavRadioStation> get currentFavStation; List<RadioStation> get favoriteStations; bool get isLoading; bool get isOn; bool get isPlaying; bool get isPaused; int get tunerValue; int get tunerMinValue; int get tunerMaxValue; DateTime get tunerClock; double get volume; double get volumeMinValue; double get volumeMaxValue;
+ List<FavRadioStation> get stations; Option<FavRadioStation> get currentFavStation; List<RadioStation> get favoriteStations; bool get isLoading; bool get isOn; bool get isPlaying; bool get isPaused; int get tunerValue; int get tunerMinValue; int get tunerMaxValue; int get tunerClock; double get volume; double get volumeMinValue; double get volumeMaxValue;
 /// Create a copy of RadioPlayerState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -45,7 +45,7 @@ abstract mixin class $RadioPlayerStateCopyWith<$Res>  {
   factory $RadioPlayerStateCopyWith(RadioPlayerState value, $Res Function(RadioPlayerState) _then) = _$RadioPlayerStateCopyWithImpl;
 @useResult
 $Res call({
- List<FavRadioStation> stations, Option<FavRadioStation> currentFavStation, List<RadioStation> favoriteStations, bool isLoading, bool isOn, bool isPlaying, bool isPaused, int tunerValue, int tunerMinValue, int tunerMaxValue, DateTime tunerClock, double volume, double volumeMinValue, double volumeMaxValue
+ List<FavRadioStation> stations, Option<FavRadioStation> currentFavStation, List<RadioStation> favoriteStations, bool isLoading, bool isOn, bool isPlaying, bool isPaused, int tunerValue, int tunerMinValue, int tunerMaxValue, int tunerClock, double volume, double volumeMinValue, double volumeMaxValue
 });
 
 
@@ -75,7 +75,7 @@ as bool,tunerValue: null == tunerValue ? _self.tunerValue : tunerValue // ignore
 as int,tunerMinValue: null == tunerMinValue ? _self.tunerMinValue : tunerMinValue // ignore: cast_nullable_to_non_nullable
 as int,tunerMaxValue: null == tunerMaxValue ? _self.tunerMaxValue : tunerMaxValue // ignore: cast_nullable_to_non_nullable
 as int,tunerClock: null == tunerClock ? _self.tunerClock : tunerClock // ignore: cast_nullable_to_non_nullable
-as DateTime,volume: null == volume ? _self.volume : volume // ignore: cast_nullable_to_non_nullable
+as int,volume: null == volume ? _self.volume : volume // ignore: cast_nullable_to_non_nullable
 as double,volumeMinValue: null == volumeMinValue ? _self.volumeMinValue : volumeMinValue // ignore: cast_nullable_to_non_nullable
 as double,volumeMaxValue: null == volumeMaxValue ? _self.volumeMaxValue : volumeMaxValue // ignore: cast_nullable_to_non_nullable
 as double,
@@ -172,7 +172,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<FavRadioStation> stations,  Option<FavRadioStation> currentFavStation,  List<RadioStation> favoriteStations,  bool isLoading,  bool isOn,  bool isPlaying,  bool isPaused,  int tunerValue,  int tunerMinValue,  int tunerMaxValue,  DateTime tunerClock,  double volume,  double volumeMinValue,  double volumeMaxValue)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<FavRadioStation> stations,  Option<FavRadioStation> currentFavStation,  List<RadioStation> favoriteStations,  bool isLoading,  bool isOn,  bool isPlaying,  bool isPaused,  int tunerValue,  int tunerMinValue,  int tunerMaxValue,  int tunerClock,  double volume,  double volumeMinValue,  double volumeMaxValue)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _RadioPlayerState() when $default != null:
 return $default(_that.stations,_that.currentFavStation,_that.favoriteStations,_that.isLoading,_that.isOn,_that.isPlaying,_that.isPaused,_that.tunerValue,_that.tunerMinValue,_that.tunerMaxValue,_that.tunerClock,_that.volume,_that.volumeMinValue,_that.volumeMaxValue);case _:
@@ -193,7 +193,7 @@ return $default(_that.stations,_that.currentFavStation,_that.favoriteStations,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<FavRadioStation> stations,  Option<FavRadioStation> currentFavStation,  List<RadioStation> favoriteStations,  bool isLoading,  bool isOn,  bool isPlaying,  bool isPaused,  int tunerValue,  int tunerMinValue,  int tunerMaxValue,  DateTime tunerClock,  double volume,  double volumeMinValue,  double volumeMaxValue)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<FavRadioStation> stations,  Option<FavRadioStation> currentFavStation,  List<RadioStation> favoriteStations,  bool isLoading,  bool isOn,  bool isPlaying,  bool isPaused,  int tunerValue,  int tunerMinValue,  int tunerMaxValue,  int tunerClock,  double volume,  double volumeMinValue,  double volumeMaxValue)  $default,) {final _that = this;
 switch (_that) {
 case _RadioPlayerState():
 return $default(_that.stations,_that.currentFavStation,_that.favoriteStations,_that.isLoading,_that.isOn,_that.isPlaying,_that.isPaused,_that.tunerValue,_that.tunerMinValue,_that.tunerMaxValue,_that.tunerClock,_that.volume,_that.volumeMinValue,_that.volumeMaxValue);case _:
@@ -213,7 +213,7 @@ return $default(_that.stations,_that.currentFavStation,_that.favoriteStations,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<FavRadioStation> stations,  Option<FavRadioStation> currentFavStation,  List<RadioStation> favoriteStations,  bool isLoading,  bool isOn,  bool isPlaying,  bool isPaused,  int tunerValue,  int tunerMinValue,  int tunerMaxValue,  DateTime tunerClock,  double volume,  double volumeMinValue,  double volumeMaxValue)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<FavRadioStation> stations,  Option<FavRadioStation> currentFavStation,  List<RadioStation> favoriteStations,  bool isLoading,  bool isOn,  bool isPlaying,  bool isPaused,  int tunerValue,  int tunerMinValue,  int tunerMaxValue,  int tunerClock,  double volume,  double volumeMinValue,  double volumeMaxValue)?  $default,) {final _that = this;
 switch (_that) {
 case _RadioPlayerState() when $default != null:
 return $default(_that.stations,_that.currentFavStation,_that.favoriteStations,_that.isLoading,_that.isOn,_that.isPlaying,_that.isPaused,_that.tunerValue,_that.tunerMinValue,_that.tunerMaxValue,_that.tunerClock,_that.volume,_that.volumeMinValue,_that.volumeMaxValue);case _:
@@ -253,7 +253,7 @@ class _RadioPlayerState implements RadioPlayerState {
 @override final  int tunerValue;
 @override final  int tunerMinValue;
 @override final  int tunerMaxValue;
-@override final  DateTime tunerClock;
+@override final  int tunerClock;
 @override final  double volume;
 @override final  double volumeMinValue;
 @override final  double volumeMaxValue;
@@ -288,7 +288,7 @@ abstract mixin class _$RadioPlayerStateCopyWith<$Res> implements $RadioPlayerSta
   factory _$RadioPlayerStateCopyWith(_RadioPlayerState value, $Res Function(_RadioPlayerState) _then) = __$RadioPlayerStateCopyWithImpl;
 @override @useResult
 $Res call({
- List<FavRadioStation> stations, Option<FavRadioStation> currentFavStation, List<RadioStation> favoriteStations, bool isLoading, bool isOn, bool isPlaying, bool isPaused, int tunerValue, int tunerMinValue, int tunerMaxValue, DateTime tunerClock, double volume, double volumeMinValue, double volumeMaxValue
+ List<FavRadioStation> stations, Option<FavRadioStation> currentFavStation, List<RadioStation> favoriteStations, bool isLoading, bool isOn, bool isPlaying, bool isPaused, int tunerValue, int tunerMinValue, int tunerMaxValue, int tunerClock, double volume, double volumeMinValue, double volumeMaxValue
 });
 
 
@@ -318,7 +318,7 @@ as bool,tunerValue: null == tunerValue ? _self.tunerValue : tunerValue // ignore
 as int,tunerMinValue: null == tunerMinValue ? _self.tunerMinValue : tunerMinValue // ignore: cast_nullable_to_non_nullable
 as int,tunerMaxValue: null == tunerMaxValue ? _self.tunerMaxValue : tunerMaxValue // ignore: cast_nullable_to_non_nullable
 as int,tunerClock: null == tunerClock ? _self.tunerClock : tunerClock // ignore: cast_nullable_to_non_nullable
-as DateTime,volume: null == volume ? _self.volume : volume // ignore: cast_nullable_to_non_nullable
+as int,volume: null == volume ? _self.volume : volume // ignore: cast_nullable_to_non_nullable
 as double,volumeMinValue: null == volumeMinValue ? _self.volumeMinValue : volumeMinValue // ignore: cast_nullable_to_non_nullable
 as double,volumeMaxValue: null == volumeMaxValue ? _self.volumeMaxValue : volumeMaxValue // ignore: cast_nullable_to_non_nullable
 as double,

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:miv_buttons/miv_buttons.dart';
 import 'package:portable_radio/config/custom_size.dart';
 import 'package:portable_radio/di/provider.dart';
+import 'package:portable_radio/domain/model/option.dart';
 import 'package:portable_radio/l10n/generated/app_localizations.dart';
 import 'package:portable_radio/presentation/atom/knob_button.dart';
 import 'package:portable_radio/presentation/atom/push_button.dart';
@@ -37,9 +38,9 @@ class RadioPlayer extends StatelessWidget {
                     child: Screen(
                       isOn: state.isOn && !state.isLoading,
                       isLoading: state.isLoading,
-                      currentFavStation: state.currentFavStation.map(
-                        () => null,
-                        (value) => value,
+                      currentFavStation: state.currentFavStation.when(
+                        none: () => null,
+                        some: (value) => value,
                       ),
                       favoriteStations: state.favoriteStations,
                       onStationFavIconPressed: cubit.toggleStationFavorite,

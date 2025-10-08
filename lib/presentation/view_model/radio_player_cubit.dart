@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:async/async.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,6 +30,11 @@ class RadioPlayerCubit extends Cubit<RadioPlayerState> {
   Timer? _debounce;
   CancelableOperation<void>? _loadStationOperation;
 
+  int _recalculateTunerClock() {
+    if (state.tunerClock == 0) return 1;
+    return 0;
+  }
+
   void turnOnOff() {
     if (state.isOn) {
       _turnOff();
@@ -50,7 +56,7 @@ class RadioPlayerCubit extends Cubit<RadioPlayerState> {
         isPaused: false,
         currentFavStation: Option.none(),
         tunerValue: 0,
-        tunerClock: DateTime.now(),
+        tunerClock: _recalculateTunerClock(),
         tunerMaxValue: 1,
       ),
     );
@@ -86,16 +92,20 @@ class RadioPlayerCubit extends Cubit<RadioPlayerState> {
 
     _debounce?.cancel();
 
-    _debounce = Timer(const Duration(milliseconds: 300), () {
+    _debounce = Timer(const Duration(milliseconds: 300), () async {
       _loadStationOperation?.cancel();
 
       final currentStation = state.stations[newTunerValue];
+      final currentFavStation = Option.some(currentStation);
+      final newTunerClock = updateClock
+          ? _recalculateTunerClock()
+          : state.tunerClock;
 
       emit(
         state.copyWith(
-          currentFavStation: Option.some(currentStation),
+          currentFavStation: currentFavStation,
           tunerValue: newTunerValue,
-          tunerClock: updateClock ? DateTime.now() : state.tunerClock,
+          tunerClock: newTunerClock,
         ),
       );
 
@@ -103,6 +113,9 @@ class RadioPlayerCubit extends Cubit<RadioPlayerState> {
         _loadStationOperation = CancelableOperation.fromFuture(
           _setStationUrl(currentStation.station.uri),
         );
+
+        // Await the operation to catch any exceptions from _setStationUrl
+        await _loadStationOperation?.value;
 
         if (state.isPlaying) {
           _audioPlayer.play();
@@ -162,7 +175,7 @@ class RadioPlayerCubit extends Cubit<RadioPlayerState> {
         state.copyWith(
           stations: stationsMarkedAsFav,
           favoriteStations: favoriteStations,
-          tunerMaxValue: stationsMarkedAsFav.length - 1,
+          tunerMaxValue: max(stationsMarkedAsFav.length - 1, 1),
         ),
       );
 
@@ -225,9 +238,9 @@ class RadioPlayerCubit extends Cubit<RadioPlayerState> {
       state.copyWith(
         stations: updatedStations,
         favoriteStations: updatedFavoriteStations,
-        currentFavStation: state.currentFavStation.map(
-          () => state.currentFavStation,
-          (value) => value.station.uri == target.uri
+        currentFavStation: state.currentFavStation.when(
+          none: () => state.currentFavStation,
+          some: (value) => value.station.uri == target.uri
               ? Option.some(updatedStation)
               : state.currentFavStation,
         ),
