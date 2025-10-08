@@ -37,19 +37,6 @@ class StationDetail extends StatelessWidget {
                 imageUri.toString(),
                 width: imageSize,
                 height: imageSize,
-                loadingBuilder: (_, child, loadingProgress) {
-                  if (loadingProgress == null) {
-                    return child;
-                  }
-
-                  return Center(
-                    child: SizedBox(
-                      width: imageSize,
-                      height: imageSize,
-                      child: CircularProgressIndicator(),
-                    ),
-                  );
-                },
                 errorBuilder: (_, _, _) =>
                     Icon(Icons.error, size: imageSize, opticalSize: imageSize),
               ),
