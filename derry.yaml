@@ -8,8 +8,11 @@ test:
   - fvm flutter pub global activate very_good_cli
   - fvm flutter pub global run very_good_cli:very_good test --coverage
   - fvm flutter pub global activate remove_from_coverage
-  - fvm flutter pub global run remove_from_coverage -f coverage/lcov.info -r '.g.dart$','.freezed.dart$','_adapter.dart$'
+  - fvm flutter pub global run remove_from_coverage -f coverage/lcov.info -r '.g.dart$','.freezed.dart$','_adapter.dart$,^lib/di/.*,^lib/l10n/.*'
   - genhtml coverage/lcov.info -o coverage/
 
 build_translations:
   - fvm flutter gen-l10n
+
+update_goldens:
+  - fvm flutter test --update-goldens

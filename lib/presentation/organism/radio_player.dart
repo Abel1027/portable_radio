@@ -78,9 +78,7 @@ class RadioPlayer extends StatelessWidget {
                     minValue: state.tunerMinValue.toDouble(),
                     maxValue: state.tunerMaxValue.toDouble(),
                     label: S.of(context)!.tuner,
-                    onChanged: (value) {
-                      cubit.changeTuner(value.toInt());
-                    },
+                    onChanged: cubit.changeTuner,
                   ),
                   KnobButton(
                     value: state.volume,

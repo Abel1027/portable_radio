@@ -81,11 +81,12 @@ class RadioPlayerCubit extends Cubit<RadioPlayerState> {
   }
 
   Future<void> changeTuner(
-    int newTunerValue, {
+    num newTunerValue, {
     bool updateClock = false,
   }) async {
-    if (newTunerValue < state.tunerMinValue ||
-        newTunerValue > state.tunerMaxValue ||
+    final newTunerValueInt = newTunerValue.toInt();
+    if (newTunerValueInt < state.tunerMinValue ||
+        newTunerValueInt > state.tunerMaxValue ||
         state.stations.isEmpty) {
       return;
     }
@@ -95,7 +96,7 @@ class RadioPlayerCubit extends Cubit<RadioPlayerState> {
     _debounce = Timer(const Duration(milliseconds: 300), () async {
       _loadStationOperation?.cancel();
 
-      final currentStation = state.stations[newTunerValue];
+      final currentStation = state.stations[newTunerValueInt];
       final currentFavStation = Option.some(currentStation);
       final newTunerClock = updateClock
           ? _recalculateTunerClock()
@@ -104,7 +105,7 @@ class RadioPlayerCubit extends Cubit<RadioPlayerState> {
       emit(
         state.copyWith(
           currentFavStation: currentFavStation,
-          tunerValue: newTunerValue,
+          tunerValue: newTunerValueInt,
           tunerClock: newTunerClock,
         ),
       );
